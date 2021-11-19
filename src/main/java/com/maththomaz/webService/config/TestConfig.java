@@ -1,8 +1,10 @@
 package com.maththomaz.webService.config;
 
+import com.maththomaz.webService.entities.Category;
 import com.maththomaz.webService.entities.Order;
 import com.maththomaz.webService.entities.User;
 import com.maththomaz.webService.entities.enums.OrderStatus;
+import com.maththomaz.webService.repositories.CategoryRepository;
 import com.maththomaz.webService.repositories.OrderRepository;
 import com.maththomaz.webService.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private OrderRepository orderRepository;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -52,7 +57,20 @@ public class TestConfig implements CommandLineRunner {
                 .client(u2)
                 .build();
 
+        Category c1 = Category.builder()
+                .name("Electronics")
+                .build();
+
+        Category c2 = Category.builder()
+                .name("Books")
+                .build();
+
+        Category c3 = Category.builder()
+                .name("Computer")
+                .build();
+
         userRepository.saveAll(Arrays.asList(u1, u2));
         orderRepository.saveAll(Arrays.asList(o1, o2));
+        categoryRepository.saveAll(Arrays.asList(c1, c2, c3));
     }
 }
