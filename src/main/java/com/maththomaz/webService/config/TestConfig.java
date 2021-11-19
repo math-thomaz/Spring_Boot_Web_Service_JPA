@@ -2,6 +2,7 @@ package com.maththomaz.webService.config;
 
 import com.maththomaz.webService.entities.Order;
 import com.maththomaz.webService.entities.User;
+import com.maththomaz.webService.entities.enums.OrderStatus;
 import com.maththomaz.webService.repositories.OrderRepository;
 import com.maththomaz.webService.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,11 +42,13 @@ public class TestConfig implements CommandLineRunner {
 
         Order o1 = Order.builder()
                 .moment(Instant.parse("2021-06-21T19:53:07Z"))
+                .orderStatus(2)
                 .client(u1)
                 .build();
 
         Order o2 = Order.builder()
                 .moment(Instant.parse("2021-07-21T03:42:10Z"))
+                .orderStatus(1)
                 .client(u2)
                 .build();
 
