@@ -16,6 +16,8 @@ import org.springframework.context.annotation.Profile;
 
 import java.time.Instant;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Set;
 
 @Configuration
 @Profile("test")
@@ -79,6 +81,7 @@ public class TestConfig implements CommandLineRunner {
                 .description("Lorem ipsum dolor sit amet, consectetur.")
                 .price(20.5)
                 .imgUrl("imgurl.com/random_address1")
+                .categories(Collections.singleton(c2))
                 .build();
 
         Product p2 = Product.builder()
@@ -86,6 +89,7 @@ public class TestConfig implements CommandLineRunner {
                 .description("Nulla eu imperdiet purus. Maecenas ante.")
                 .price(1190.0)
                 .imgUrl("imgurl.com/random_address2")
+                .categories(Collections.singleton(c3))
                 .build();
 
         Product p3 = Product.builder()
@@ -93,6 +97,7 @@ public class TestConfig implements CommandLineRunner {
                 .description("Nam eleifend maximus tortor, at mollis.")
                 .price(1250.0)
                 .imgUrl("imgurl.com/random_address3")
+                .categories(Collections.singleton(c3))
                 .build();
 
         Product p4 = Product.builder()
@@ -100,6 +105,7 @@ public class TestConfig implements CommandLineRunner {
                 .description("Donec aliquet odio ac rhoncus cursus.")
                 .price(1200.0)
                 .imgUrl("imgurl.com/random_address4")
+                .categories(Collections.singleton(c3))
                 .build();
 
         Product p5 = Product.builder()
@@ -107,6 +113,7 @@ public class TestConfig implements CommandLineRunner {
                 .description("Cras fringilla convallis sem vel faucibus.")
                 .price(19.9)
                 .imgUrl("imgurl.com/random_address5")
+                .categories(Collections.singleton(c2))
                 .build();
 
         userRepository.saveAll(Arrays.asList(u1, u2));
