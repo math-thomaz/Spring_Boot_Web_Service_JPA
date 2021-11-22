@@ -2,10 +2,12 @@ package com.maththomaz.webService.config;
 
 import com.maththomaz.webService.entities.Category;
 import com.maththomaz.webService.entities.Order;
+import com.maththomaz.webService.entities.Product;
 import com.maththomaz.webService.entities.User;
 import com.maththomaz.webService.entities.enums.OrderStatus;
 import com.maththomaz.webService.repositories.CategoryRepository;
 import com.maththomaz.webService.repositories.OrderRepository;
+import com.maththomaz.webService.repositories.ProductRepository;
 import com.maththomaz.webService.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -27,6 +29,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -69,8 +74,44 @@ public class TestConfig implements CommandLineRunner {
                 .name("Computer")
                 .build();
 
+        Product p1 = Product.builder()
+                .name("The Lord of the Rings")
+                .description("Lorem ipsum dolor sit amet, consectetur.")
+                .price(20.5)
+                .imgUrl("imgurl.com/random_address1")
+                .build();
+
+        Product p2 = Product.builder()
+                .name("Smart TV")
+                .description("Nulla eu imperdiet purus. Maecenas ante.")
+                .price(1190.0)
+                .imgUrl("imgurl.com/random_address2")
+                .build();
+
+        Product p3 = Product.builder()
+                .name("Macbook Pro")
+                .description("Nam eleifend maximus tortor, at mollis.")
+                .price(1250.0)
+                .imgUrl("imgurl.com/random_address3")
+                .build();
+
+        Product p4 = Product.builder()
+                .name("PC Gamer")
+                .description("Donec aliquet odio ac rhoncus cursus.")
+                .price(1200.0)
+                .imgUrl("imgurl.com/random_address4")
+                .build();
+
+        Product p5 = Product.builder()
+                .name("Rails for Dummies")
+                .description("Cras fringilla convallis sem vel faucibus.")
+                .price(19.9)
+                .imgUrl("imgurl.com/random_address5")
+                .build();
+
         userRepository.saveAll(Arrays.asList(u1, u2));
         orderRepository.saveAll(Arrays.asList(o1, o2));
         categoryRepository.saveAll(Arrays.asList(c1, c2, c3));
+        productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
     }
 }

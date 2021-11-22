@@ -1,12 +1,11 @@
 package com.maththomaz.webService.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @AllArgsConstructor
 @Builder
@@ -14,30 +13,28 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @Setter
-@Table(name = "tb_user")
-public class User implements Serializable {
+@Table(name = "tb_product")
+public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String email;
-    private String phone;
-    private String password;
+    private String description;
+    private Double price;
+    private String imgUrl;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "client")
-    private List<Order> orders = new ArrayList<>();
+    private Set<Category> categories = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        User user = (User) o;
+        Product product = (Product) o;
 
-        return id != null ? id.equals(user.id) : user.id == null;
+        return id != null ? id.equals(product.id) : product.id == null;
     }
 
     @Override
