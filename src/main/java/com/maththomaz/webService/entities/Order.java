@@ -3,10 +3,14 @@ package com.maththomaz.webService.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.maththomaz.webService.entities.enums.OrderStatus;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 @AllArgsConstructor
 @Builder
@@ -31,6 +35,9 @@ public class Order implements Serializable {
     @JoinColumn(name = "client_id")
     private User client;
 
+    @OneToMany(mappedBy = "id.order", fetch = FetchType.EAGER)
+    private Set<OrderItem> items = new HashSet<>();
+
     public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
         super();
         this.id = id;
@@ -47,6 +54,10 @@ public class Order implements Serializable {
         if(orderStatus != null) {
             this.orderStatus = orderStatus.getCode();
         }
+    }
+
+    public Set<OrderItem> getItems() {
+        return items;
     }
 
     @Override
